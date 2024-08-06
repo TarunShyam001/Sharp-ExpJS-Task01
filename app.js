@@ -1,18 +1,20 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
+app.use(bodyParser.urlencoded({extended : false}));
+
 app.use('/add-product',(req, res, next)=>{
-    res.send(`<html><body><form action="/product" method="POST"><input type="text" name="title"><button type="submit"> Add Product </button><br><input type="number" min="0"><button type="submit"> Add Size </button></form></body></html>`)
+    res.send(`<html><body><form action="/product" method="POST"><input type="text" name="title"><input type="number" min="0" name="size" ><button type="submit"> Add Product </button></form></body></html>`);
 });
 
 app.use('/product', (req, res, next)=>{
-    console.log(res.body);
+    console.log(req.body);
     res.redirect('/');
 });
 
 app.use('/', (req, res)=>{
-    console.log('Task performed');
     res.send('<h1> Hello to the ExpressJS </h1>');
 })
 
