@@ -5,6 +5,7 @@ const app = express();
 
 app.use((req, res, next)=>{
     console.log('middleware is get called');
+    next();
 });
 app.use((req, res, next)=>{
     console.log('another middleware is get called');
